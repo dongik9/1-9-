@@ -1,17 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-void add_new(void); // »õ·Î¿î ¿¬¶ôÃ³ Ãß°¡
-void list(void); // ¿¬¶ôÃ³ º¸¿©ÁÖ±â
-void search(void); // ¿¬¶ôÃ³ °Ë»ö
-void edit(void); // ¿¬¶ôÃ³ ¼öÁ¤
-void delete_contact(void); // ¿¬¶ôÃ³ »èÁ¦
-void Exit(int *a); // ³ª°¡±â
-void start(int *a); // ¸ŞÀÎ È­¸é ÇÔ¼ö
+void add_new(void); // ìƒˆë¡œìš´ ì—°ë½ì²˜ ì¶”ê°€
+void list(void); // ì—°ë½ì²˜ ë³´ì—¬ì£¼ê¸°
+void search(void); // ì—°ë½ì²˜ ê²€ìƒ‰
+void edit(void); // ì—°ë½ì²˜ ìˆ˜ì •
+void delete_contact(void); // ì—°ë½ì²˜ ì‚­ì œ
+void Exit(int *a); // ë‚˜ê°€ê¸°
+void start(int *a); // ë©”ì¸ í™”ë©´ í•¨ìˆ˜
 
 main(void) {
-	int a = 1; // ¹İº¹¹® ¿ë a
-	while (a == 1) { // ¸ŞÀÎ È­¸é ÇÔ¼ö
+	int a = 1; // ë°˜ë³µë¬¸ ìš© a
+	while (a == 1) { // ë©”ì¸ í™”ë©´ í•¨ìˆ˜
 		start(a);
 	}
 }
@@ -30,7 +30,7 @@ void start(int *a) {
 	printf("          [0] Exit\n");
 	printf("          ==========================\n");
 	printf("          Enter the choice:");
-	scanf_s("%d", &b); // ¸ŞÀÎ È­¸é¿¡¼­ °¢°¢ÀÇ È­¸éÀ¸·Î ³Ñ¾î°¡±â À§ÇØ Ã¼Å©
+	scanf_s("%d", &b); // ë©”ì¸ í™”ë©´ì—ì„œ ê°ê°ì˜ í™”ë©´ìœ¼ë¡œ ë„˜ì–´ê°€ê¸° ìœ„í•´ ì²´í¬
 	printf("\n");
 
 	if (b == 1) {
@@ -55,17 +55,17 @@ void start(int *a) {
 
 }
 
-void add_new(void) { // »õ·Î¿î ¿¬¶ôÃ³ Ãß°¡
+void add_new(void) { // ìƒˆë¡œìš´ ì—°ë½ì²˜ ì¶”ê°€
 
-	char temp[100]; // ÀÓ½ÃÀúÀå¿ë
+	char temp[100]; // ì„ì‹œì €ì¥ìš©
 
-	FILE* fp = fopen("contact list.txt", "a"); // contact list.txt ¶ó´Â ¸Ş¸ğÀåÀ» ¿®
+	FILE* fp = fopen("contact list.txt", "a"); // contact list.txt ë¼ëŠ” ë©”ëª¨ì¥ì„ ì—¶
 
 	printf("Name : ");
-	scanf("%s", &temp); // ÀÌ¸§°ªÀ» temp¿¡ ¹ŞÀ½
-	fputs(temp, fp); // temp°ªÀ» txtÆÄÀÏ¿¡ ³ÖÀ½
+	scanf("%s", &temp); // ì´ë¦„ê°’ì„ tempì— ë°›ìŒ
+	fputs(temp, fp); // tempê°’ì„ txtíŒŒì¼ì— ë„£ìŒ
 
-	fputs("\n", fp); // ÁÙ¹Ù²Ş
+	fputs("\n", fp); // ì¤„ë°”ê¿ˆ
 
 	printf("Phone Number : ");
 	scanf("%s", &temp);
@@ -82,13 +82,13 @@ void add_new(void) { // »õ·Î¿î ¿¬¶ôÃ³ Ãß°¡
 	fputs(temp, fp);
 	fputs("\n", fp);
 
-	fclose(fp); // ÆÄÀÏ ´İ±â
+	fclose(fp); // íŒŒì¼ ë‹«ê¸°
 	printf("\n\n");
 }
 
-void list(void) { // ¿¬¶ôÃ³ º¸¿©ÁÖ±â
-	char temp[100]; // ÀÓ½Ã º¯¼ö
-	int i; // ¹İº¹¹®¿ë i
+void list(void) { // ì—°ë½ì²˜ ë³´ì—¬ì£¼ê¸°
+	char temp[100]; // ì„ì‹œ ë³€ìˆ˜
+	int i; // ë°˜ë³µë¬¸ìš© i
 
 	printf("          ==========================\n");
 	printf("              LIST OF CONTACTS\n");
@@ -96,13 +96,12 @@ void list(void) { // ¿¬¶ôÃ³ º¸¿©ÁÖ±â
 	printf(" Name          Phone No          Address          E-mail\n");
 	printf(" ===========================================================\n");
 
-	FILE* fp = fopen("contact list.txt", "r"); // contact list¸¦ ÀĞ±â¸ğµå·Î ¿®
-
-	for (i = 1; i <= 4; i++) {
-		fgets(temp, 200, fp); // temp¿¡ contact listÀÇ Ã¹¹øÂ° ÁÙÀ» ÀĞ¾î¿È
+	FILE* fp = fopen("contact list.txt", "r"); // contact listë¥¼ ì½ê¸°ëª¨ë“œë¡œ ì—¶
+	
+		while (fgets(temp, 200, fp) != NULL ) {
 		printf("Name      : %s\n", temp);
 
-		fgets(temp, 200, fp); // temp¿¡ contact listÀÇ µÎ¹øÂ° ÁÙÀ» ÀĞ¾î¿È
+		fgets(temp, 200, fp);
 		printf("Phone     : %s\n", temp);
 
 		fgets(temp, 200, fp);
@@ -116,11 +115,11 @@ void list(void) { // ¿¬¶ôÃ³ º¸¿©ÁÖ±â
 	printf(" ===========================================================\n\n");
 }
 
-void search(void) { // ¿¬¶ôÃ³ °Ë»ö
+void search(void) { // ì—°ë½ì²˜ ê²€ìƒ‰
 	printf("3");
 }
 
-void edit(void) { // ¿¬¶ôÃ³ ¼öÁ¤
+void edit(void) { // ì—°ë½ì²˜ ìˆ˜ì •
 	printf("          ==========================\n");
 	printf("               EDIT A CONTACTS\n");
 	printf("          ==========================\n\n");
@@ -130,10 +129,10 @@ void edit(void) { // ¿¬¶ôÃ³ ¼öÁ¤
 	printf(" ===========================================================\n");
 }
 
-void delete_contact(void) { // ¿¬¶ôÃ³ »èÁ¦
+void delete_contact(void) { // ì—°ë½ì²˜ ì‚­ì œ
 	printf("5");
 }
 
-void Exit(int *a) { // ³ª°¡±â
+void Exit(int *a) { // ë‚˜ê°€ê¸°
 	*a = 2;
 }
